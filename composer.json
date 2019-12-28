@@ -1,0 +1,21 @@
+{
+  "name": "tiderjian/qs-gridImport",
+  "description": "qs dataimport",
+  "type": "library",
+  "keywords": ["react", "ant-design", "grid", "dataImport"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "tiderjian",
+      "email": "tider_yatsen@hotmail.com"
+    }
+  ],
+  "require": {
+      "php": ">=7.2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "QsGridImport\\": "src/"
+    }
+  }
+}
