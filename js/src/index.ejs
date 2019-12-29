@@ -4,14 +4,16 @@
         <title>React & Webpack</title>
     </head>
     <body>
-        <div id="root">
+    </div>
+        <div id="root" style="width:2500px;">
         </div>
+
         <script>
             var opt = {
-                getDataUrl: 'http://tslj.test/api/public/test1',
-                submitUrl: 'http://tslj.test/api/public/test2'
-            };
-            importGrid('root', opt);
+                    submitUrl: "http://tslj.test/api/public/test2",
+                    successRedirectUrl: "http://tslj.test/api/public/testShow",
+                    data:{"columns":{"data":[{"title":"\u6350\u8d60\u9879\u76ee","key":"project_id","type":"select","options":{"948":"(id:948)2019\u7ae5\u4e66\u4e50\u6350\u8ba1\u5212\u7684\u6d4b\u8bd5\u6350\uff08\u81ea\u884c\u8fd0\u9001\uff09","1165":"(id:1165)\u6d4b\u8bd5\u540c\u540d\u8fdb\u884c\u4e2d"},"required":true,"valiate_callback":{}},{"title":"\u56e2\u961f\u540d\u79f0","key":"team_name","type":"input","required":true},{"title":"\u8054\u7cfb\u4eba","key":"contact","type":"input","required":true},{"title":"\u8054\u7cfb\u7535\u8bdd","key":"tel","type":"input","validate_callback":{}},{"title":"\u7535\u5b50\u90ae\u7bb1","key":"email","type":"input","required":true,"validate_callback":{}},{"title":"\u6536\u8d27\u57ce\u5e02","key":"city","type":"input","validate_callback":{}},{"title":"\u8be6\u7ec6\u5730\u5740","key":"address","type":"input","required":true},{"title":"\u8865\u5145\u8bf4\u660e","key":"summary","type":"input"},{"title":"\u6350\u8d60\u5b8c\u6210\u65f6\u95f4","key":"complete_time","type":"date","required":true}]},"row_data":[{"data":{"project_id":"948","team_name":"\u6d4b\u8bd5\u56e2\u961f1","contact":"tider","tel":13826402019,"email":"tider@quansitech.com","city":"\u5e7f\u4e1c,\u5e7f\u5dde,\u6d77\u73e0","address":"\u5e7f\u5dde\u5927\u9053\u5357","summary":null,"complete_time":"2019-09-01"}},{"data":{"project_id":"1165","team_name":"\u6d4b\u8bd5\u56e2\u961f2","contact":"tiderys","tel":13826402010,"email":"tiderys@quansitech.com","city":"\u5e7f\u4e1c,\u73e0\u6d77,\u62f1\u5317","address":"\u62f1\u5317\u6d77\u5173","summary":null,"complete_time":"2019-12-01"}}]}    };
+                importGrid('root', opt);
         </script>
     </body>
 </html>

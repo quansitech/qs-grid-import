@@ -10,6 +10,8 @@ class SubmitButton extends React.Component{
             data,
             submiturl,
             update,
+            success,
+            showerr,
             ...restProps
         } = this.props;
 
@@ -36,7 +38,11 @@ class SubmitButton extends React.Component{
             }
         }).then(function(data){
             if(data.error == 1){
+                that.props.showerr(data.error_msg);
                 that.props.update(data.row_data);
+            }
+            else{
+                that.props.success();
             }
 
         });

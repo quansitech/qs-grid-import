@@ -38,6 +38,6 @@ class Select extends ColumnType{
 
     public function paraseValue($value)
     {
-        return array_flip($this->select_options)[$value];
+        return (string)(array_flip($this->select_options)[$value]);
     }
 }

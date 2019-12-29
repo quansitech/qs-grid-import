@@ -17,6 +17,9 @@ class Row{
         $columns = $this->sheet->getAllColumns();
         foreach($row_data as $data){
             $column = array_shift($columns);
+            if(!$column){
+                break;
+            }
             $cell = new Cell($column, $column->is_ref);
             $cell->setValue($data);;
             $this->cells[$column->key] = $cell;

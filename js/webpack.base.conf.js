@@ -5,7 +5,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
     entry: './src/index.js',
     output: {
-        filename: 'gruid-import-bundle.js',
+        filename: 'grid-import-bundle.js',
         path: path.join(__dirname, 'dist')
     },
     module: {

@@ -8,7 +8,7 @@ class Date extends ColumnType{
 
     public function validate($val){
         $date = self::formatDate($val);
-        return $date != date('Y-n-j', strtotime($date)) ? false : true;
+        return $date != date('n/j/Y', strtotime($date)) ? false : true;
     }
 
     public function convertTo(){
@@ -18,8 +18,8 @@ class Date extends ColumnType{
     }
 
     protected function formatDate($val){
-        $date = str_replace('/', '-', $val);
-        is_numeric($date) && $date = Helper::excelTime($date, 'Y-m-d');
+        $date = str_replace('-', '/', $val);
+        is_numeric($date) && $date = Helper::excelTime($date, 'n/j/Y');
         return $date;
     }
 

@@ -43,8 +43,8 @@ class Row{
             }
         }
 
-        if($this->children && $r = $this->children->validate()){
-            $r === false &&  $pass = false;
+        if($this->children && $this->children->validate() === false){
+            $pass = false;
         };
 
         return $pass;

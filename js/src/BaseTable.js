@@ -8,6 +8,18 @@ class BaseTable extends React.Component{
     constructor(props){
         super(props);
 
+        this.final = this.props.columns.children ? false : true;
+
+        this.renderCell = this.renderCell.bind(this);
+        this.expandedRowRender = this.expandedRowRender.bind(this);
+        this.updateState = this.updateState.bind(this);
+        this.commonChange = this.commonChange.bind(this);
+        this.updateBaseProp = this.updateBaseProp.bind(this);
+
+        this.updateBaseProp();
+    }
+
+    updateBaseProp(){
         this.columns = this.props.columns.data.map(col => {
             return {
                 title: col.title,
@@ -17,21 +29,11 @@ class BaseTable extends React.Component{
             }
         });
 
-        this.row_data = this.props.row_data;
         this.dataSource = this.props.row_data.map((col, idx) => {
             const dataSource = col.data;
             dataSource.key = idx;
             return dataSource;
         });
-
-        console.log("baseTable construct: ", this.row_data);
-
-        this.final = this.props.columns.children ? false : true;
-
-        this.renderCell = this.renderCell.bind(this);
-        this.expandedRowRender = this.expandedRowRender.bind(this);
-        this.updateState = this.updateState.bind(this);
-        this.commonChange = this.commonChange.bind(this);
     }
 
     renderCell(colSetting){
@@ -54,15 +56,16 @@ class BaseTable extends React.Component{
 
 
     commonChange(val, index, columnName){
-        this.row_data[index].data[columnName] = val;
-        this.updateState(this.row_data, 0, true);
+        this.props.row_data[index].data[columnName] = val;
+        this.updateState(this.props.row_data, 0, true);
+        this.updateBaseProp();
     }
 
     updateState(data, parentIdx, current = false){
         if(!current){
-            this.row_data[parentIdx].children = data;
+            this.props.row_data[parentIdx].children = data;
         }
-        this.props.updatestate(this.row_data, this.props.parentIdx);
+        this.props.updatestate(this.props.row_data, this.props.parentIdx);
     }
 
     expandedRowRender(record,index){
