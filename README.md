@@ -19,13 +19,16 @@ npm run build //编译js文件，编译出的文件在dist/grid-import-bundle.js
 ```
 
 ## 截图
-
+将excel数据转换成web grid
 <img src="https://user-images.githubusercontent.com/1665649/71555235-cc3f0600-2a64-11ea-8b6e-8f45adae5750.png" />
 
+导入出错错误提示
 <img src="https://user-images.githubusercontent.com/1665649/71555252-263fcb80-2a65-11ea-86d0-f789be74a7fc.png" />
 
+错误提示2
 <img src="https://user-images.githubusercontent.com/1665649/71555263-4b343e80-2a65-11ea-8877-1226d8de6fa8.png" />
 
+导入成功，确定跳转
 <img src="https://user-images.githubusercontent.com/1665649/71555287-846cae80-2a65-11ea-8015-c9aae20271bf.png" />
 ## 用法
 
