@@ -1,5 +1,5 @@
 {
-  "name": "tiderjian/qs-gridImport",
+  "name": "tiderjian/qs-grid-import",
   "description": "qs dataimport",
   "type": "library",
   "keywords": ["react", "ant-design", "grid", "dataImport"],
