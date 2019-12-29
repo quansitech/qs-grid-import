@@ -11,7 +11,7 @@
 
 ## 安装
 ```php
-composer require tiderjian/qs-gridImport
+composer require tiderjian/qs-grid-import
 
 //找到代码包里的js文件夹
 npm i //完成前端依赖包的安装
