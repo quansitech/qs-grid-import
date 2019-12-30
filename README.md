@@ -235,7 +235,7 @@ $grid_import = new GridImport($options);
 
 $r = $grid_import->fill()->validate();
 if($r === false){
-    $errArr = $grid_import->responaseErrArr();
+    $errArr = $grid_import->responseErrArr();
     //将$errArr数组转换成json格式返回
     //前端grid组件接收到后，会在对应的单元格显示出错误提示
 }
@@ -245,7 +245,7 @@ $import_datas = $grid_import->toArray();
 //剩下就是实际的业务逻辑了
 //在处理的过程中如果有进一步出错，可以通过一下代码给grid组件返回出错提示
 //$error_msg为需要显示的错误信息
-$errArr = $grid_import->responaseErrArr($error_msg);
+$errArr = $grid_import->responseErrArr($error_msg);
 //将$errArr数组转换成json格式返回
 //前端grid组件接收到后，会通过警告提示显示出错误原因
 

@@ -47,7 +47,7 @@ class GridImport{
         return $this->first_grid->validate();
     }
 
-    public function responaseErrArr($err_msg = ''){
+    public function responseErrArr($err_msg = ''){
         $row_data = $this->first_grid->toArray();
         return [
             'error' => 1,
