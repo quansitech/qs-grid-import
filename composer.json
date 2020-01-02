@@ -11,7 +11,9 @@
     }
   ],
   "require": {
-      "php": ">=7.2.0"
+      "php": ">=7.2.0",
+      "phpoffice/phpspreadsheet": "^1.10",
+      "tiderjian/qs-excel": "^1.0"
   },
   "autoload": {
     "psr-4": {
