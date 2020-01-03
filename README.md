@@ -51,7 +51,7 @@ $options = [
             'type' => CellType::SELECT,
             'options' => [ 1 => '项目1', 2 => '项目2'],
             'required' => true,
-            'valiate_callback' => function($val){
+            'validate_callback' => function($val){
                 //验证逻辑
             }
         ],
@@ -134,7 +134,7 @@ PS. 除INPUT类型外，其余类型都在提交时会对提交值分别进行�
     >         'type' => CellType::SELECT,
     >         'options' => [ 1 => '项目1', 2 => '项目2'],
     >         'required' => true,
-    >         'valiate_callback' => function($val){
+    >         'validate_callback' => function($val){
     >             //验证逻辑
     >         }
     >     ]
