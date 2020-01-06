@@ -1,5 +1,5 @@
 <?php
-namespace QsGridImport\Transcoder\Qsexcel;
+namespace QsGridImport\Transcoder\QsExcel;
 
 class Row{
 

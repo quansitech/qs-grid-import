@@ -1,7 +1,7 @@
 <?php
-namespace QsGridImport\Transcoder\Qsexcel;
+namespace QsGridImport\Transcoder\QsExcel;
 
-use QsGridImport\Transcoder\Qsexcel\ColumnType\ColumnType;
+use QsGridImport\Transcoder\QsExcel\ColumnType\ColumnType;
 
 class Column{
 

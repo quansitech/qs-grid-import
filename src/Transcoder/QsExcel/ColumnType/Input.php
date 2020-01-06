@@ -1,5 +1,5 @@
 <?php
-namespace QsGridImport\Transcoder\Qsexcel\ColumnType;
+namespace QsGridImport\Transcoder\QsExcel\ColumnType;
 
 class Input extends ColumnType{
 
