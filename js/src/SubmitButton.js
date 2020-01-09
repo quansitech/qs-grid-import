@@ -34,7 +34,8 @@ class SubmitButton extends React.Component{
                 return res.json();
             }
             else{
-                throw 'something go error, status:' . res.status;
+                res.text();
+                throw 'something go error, status:' + res.status;
             }
         }).then(function(data){
             if(data.error == 1){
