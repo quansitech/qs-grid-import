@@ -224,7 +224,7 @@ importGrid('id', opt); //第一个参数是需要渲染的dom id， 第二个参
 </script>
 ```
 
-完成这部，就可以看到导入的数据已经转换成web表格，确认没错后可点击提交
+完成这步，就可以看到导入的数据已经转换成web表格，确认没错后可点击提交
 
 ### grid数据提交处理
 ```php
@@ -252,3 +252,27 @@ $errArr = $grid_import->responseErrArr($error_msg);
 //如果数据已经成功插入
 //返回一个200响应即可，grid组件会显示导入成功提示
 ```
+
+### 异步导入
+前端组件配置
+```javascript
+<script type="text/javascript" src="__PUBLIC__/libs-extra/grid-import-bundle.js"></script>
+<script>
+var opt = {
+    async: true,
+    asyncProcessNotify: "", //进度请求地址
+    submitUrl: "", //设置数据提交到的后端地址
+    successRedirectUrl: "", //这里设置导入成功后，点击确定按钮要跳转到的地址
+    data: {json_encode($grid_data)} //将上面生成的grid_data转成json格式赋给data
+};
+importGrid('id', opt); //第一个参数是需要渲染的dom id， 第二个参数为上面的配置对象
+</script>
+```
+
+后端地址配置
++ submitUrl
+> 验证数据没有问题，启动异步处理逻辑。并返回处理trans_id
+
++ asyncProcessNotify
+> 1. 接收trans_id , 并根据trans_id查验异步处理进度情况，返回process，通知前端更新进度条
+> 2. 如果处理过程中出错，返回 error: 1, error_msg: 错误原因

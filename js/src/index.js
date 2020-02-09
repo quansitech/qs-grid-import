@@ -73,7 +73,7 @@ class ImportGrid extends React.Component{
 
         if(this.state.data) {
             return (<div>
-                    <SubmitButton data={ this.state.data } submiturl={ this.props.submitUrl } success={ this.importSuccess } update={ this.updateState } showerr={ this.error } style={{ marginBottom: "5px" }} />
+                    <SubmitButton async={ this.props.async } asyncProcessNotify={ this.props.asyncProcessNotify } data={ this.state.data } submiturl={ this.props.submitUrl } success={ this.importSuccess } update={ this.updateState } showerr={ this.error } style={{ marginBottom: "5px" }} />
                     <BaseTable columns={ this.state.data.columns } row_data={ this.state.data.row_data} updatestate={ this.updateState }/>
                 </div>)
         }
@@ -86,9 +86,9 @@ class ImportGrid extends React.Component{
 }
 
 function importGrid(id, opt){
-    const defaultOpt = { submitUrl: '', successRedirectUrl: '', data: null};
+    const defaultOpt = { submitUrl: '', async: false, asyncProcessNotify: '', successRedirectUrl: '', data: null};
     Object.assign(defaultOpt, opt);
-    ReactDOM.render(<ImportGrid submitUrl={ defaultOpt.submitUrl } redirect={ defaultOpt.successRedirectUrl } data={ defaultOpt.data} />, document.getElementById(id));
+    ReactDOM.render(<ImportGrid submitUrl={ defaultOpt.submitUrl } redirect={ defaultOpt.successRedirectUrl } data={ defaultOpt.data} async={ defaultOpt.async } asyncProcessNotify={ defaultOpt.asyncProcessNotify } />, document.getElementById(id));
 }
   
 window.importGrid = importGrid;
