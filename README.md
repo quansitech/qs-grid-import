@@ -263,7 +263,7 @@ var opt = {
     asyncProcessNotify: "", //进度请求地址
     submitUrl: "", //设置数据提交到的后端地址
     successRedirectUrl: "", //这里设置导入成功后，点击确定按钮要跳转到的地址
-    data: {json_encode($grid_data)} //将上面生成的grid_data转成json格式赋给data
+    data: {:json_encode($grid_data)} //将上面生成的grid_data转成json格式赋给data
 };
 importGrid('id', opt); //第一个参数是需要渲染的dom id， 第二个参数为上面的配置对象
 </script>
