@@ -228,7 +228,7 @@ importGrid('id', opt); //第一个参数是需要渲染的dom id， 第二个参
 
 ### grid数据提交处理
 ```php
-//$options不在说明了，就是最开始定义的配置
+//$options不再说明了，就是最开始定义的配置
 $grid_import = new GridImport($options);
 //完成提交数据的填充和验证
 //如果验证有问题，会返回false
@@ -276,3 +276,51 @@ importGrid('id', opt); //第一个参数是需要渲染的dom id， 第二个参
 + asyncProcessNotify
 > 1. 接收trans_id , 并根据trans_id查验异步处理进度情况，返回process，通知前端更新进度条
 > 2. 如果处理过程中出错，返回 error: 1, error_msg: 错误原因
+
+
+### 导入中处理异常，返回异常记录
+业务场景：导入数据，如需请求第三方API，当网络异常或者API请求返回错误，需要将异常情况返回给用户
+
+```php
+//上传，excel数据转换等处理可看上面的代码说明，此处仅列出处理数据导入的代码
+$grid_import = new GridImport($options);
+
+$r = $grid_import->fill()->validate();
+if($r === false){
+    $errArr = $grid_import->responseErrArr();
+    //将$errArr数组转换成json格式返回
+    //前端grid组件接收到后，会在对应的单元格显示出错误提示
+}
+foreach($grid_import->getGrid()->getRows() as $index => &$row){
+    
+    //获取行数据，返回数组格式
+    $row_data = $row->getRowData();
+    
+    //业务处理代码
+    
+    //处理完成
+    if($r){
+        //可根据业务需要，选择清除处理成功的数据
+        //或者有一条数据不成功都将回滚，可选择不清除
+        $grid_import->getGrid()->removeRow($index);
+    }
+    //处理失败
+    else{
+        //设置具体错误信息
+        $row->setError('设置错误信息');
+    }
+
+}
+
+if(处理失败){
+    //构造错误应答
+    $errArr = $grid_import->responseErrArr();
+    //将$errArr数组转换成json格式返回
+}
+//处理成功
+else{   
+    //如果数据已经成功插入
+    //返回一个200响应即可，grid组件会显示导入成功提示
+    //如果是异步导入，返回process:100
+}
+```

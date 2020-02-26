@@ -29,4 +29,16 @@ class Grid{
         }
         return $res;
     }
+
+    public function getRows(){
+        return $this->rows;
+    }
+
+    public function removeRow($index){
+        unset($this->rows[$index]);
+    }
+
+    public function isEmpty(){
+        return count($this->rows) > 0 ? false : true;
+    }
 }

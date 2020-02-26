@@ -9,13 +9,14 @@
         </div>
 
         <script>
-            var opt = {
-                    submitUrl: "http://tslj.test/api/public/test2",
-                    async: true,
-                    asyncProcessNotify: "http://tslj.test/api/public/testProcessNotify",
-                    successRedirectUrl: "http://tslj.test/api/public/testShow",
-                    data:{"columns":{"data":[{"title":"\u6350\u8d60\u9879\u76ee","key":"project_id","type":"select","options":{"948":"(id:948)2019\u7ae5\u4e66\u4e50\u6350\u8ba1\u5212\u7684\u6d4b\u8bd5\u6350\uff08\u81ea\u884c\u8fd0\u9001\uff09","1165":"(id:1165)\u6d4b\u8bd5\u540c\u540d\u8fdb\u884c\u4e2d"},"required":true,"valiate_callback":{}},{"title":"\u56e2\u961f\u540d\u79f0","key":"team_name","type":"input","required":true},{"title":"\u8054\u7cfb\u4eba","key":"contact","type":"input","required":true},{"title":"\u8054\u7cfb\u7535\u8bdd","key":"tel","type":"input","validate_callback":{}},{"title":"\u7535\u5b50\u90ae\u7bb1","key":"email","type":"input","required":true,"validate_callback":{}},{"title":"\u6536\u8d27\u57ce\u5e02","key":"city","type":"input","validate_callback":{}},{"title":"\u8be6\u7ec6\u5730\u5740","key":"address","type":"input","required":true},{"title":"\u8865\u5145\u8bf4\u660e","key":"summary","type":"input"},{"title":"\u6350\u8d60\u5b8c\u6210\u65f6\u95f4","key":"complete_time","type":"date","required":true}]},"row_data":[{"data":{"project_id":"948","team_name":"\u6d4b\u8bd5\u56e2\u961f1","contact":"tider","tel":13826402019,"email":"tider@quansitech.com","city":"\u5e7f\u4e1c,\u5e7f\u5dde,\u6d77\u73e0","address":"\u5e7f\u5dde\u5927\u9053\u5357","summary":null,"complete_time":"2019-09-01"}},{"data":{"project_id":"1165","team_name":"\u6d4b\u8bd5\u56e2\u961f2","contact":"tiderys","tel":13826402010,"email":"tiderys@quansitech.com","city":"\u5e7f\u4e1c,\u73e0\u6d77,\u62f1\u5317","address":"\u62f1\u5317\u6d77\u5173","summary":null,"complete_time":"2019-12-01"}}]}    };
-                importGrid('root', opt);
+                var opt = {
+                            async: true,
+                            asyncProcessNotify: "http://move.test/Admin/BoxTplBookImport/getImportProcess.html", //进度请求地址
+                            submitUrl: "http://move.test/Admin/BoxTplBookImport/execImportShell1.html", //设置数据提交到的后端地址
+                            successRedirectUrl: "http://move.test/Admin/BoxTpl/index.html", //这里设置导入成功后，点击确定按钮要跳转到的地址
+                            data: {"columns":{"data":[{"title":"\u4e66\u7bb1\u6a21\u677f","key":"tpl_id","type":"select","options":{"1":"1:\u7ae5\u8bdd\u6545\u4e8b","2":"2:\u8ba1\u7b97\u673a\u79d1\u5b66\u4e0e\u6280\u672f\u53d1\u5c55","4":"4:\u5927\u536b\u4e0a\u5b66\u53bb","5":"5:\u4eba\u6587\u6587\u5b66","6":"6:\u6d4b\u8bd5\u6807\u7b7e","7":"7:\u6d4b\u8bd5\u65b0\u589e\u6807\u7b7e","8":"8:\u6e38\u5ba2","9":"9:\u6211\u662f\u6a21\u677f1","10":"10:\u51af\u5b9d\u5b9d1"},"required":true},{"title":"ISBN","key":"isbn","type":"input","required":true},{"title":"\u4e66\u540d","key":"name","type":"input","required":true,"validate_callback":{}},{"title":"\u6570\u91cf","key":"num","type":"input","required":true,"validate_callback":{}}]},"row_data":[{"data":{"tpl_id":"1","isbn":"9787550034099","name":"\u62e5\u62b1\u65f6\u95f4\u7684\u4eba","num":1}},{"data":{"tpl_id":"1","isbn":"9787507552102","name":"\u585e\u5c14\u7ef4\u4e9a\u53f2","num":1}},{"data":{"tpl_id":"1","isbn":"9787221157355","name":"\u4e24\u6816\u722c\u884c\u52a8\u7269\u7684\u795e\u8bdd\u4e0e\u4f20\u8bf4","num":1}}]} //将上面生成的grid_data转成json格式赋给data
+                        }
+                importGrid('root', opt); //第一个参数是需要渲染的dom id， 第二个参数为上面的配置对象
         </script>
     </body>
 </html>

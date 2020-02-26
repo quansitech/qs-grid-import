@@ -63,5 +63,8 @@ class GridImport{
         return $this->first_grid->toArray();
     }
 
+    public function getGrid(){
+        return $this->first_grid;
+    }
 
 }

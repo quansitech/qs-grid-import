@@ -10,6 +10,8 @@ class Row{
 
     protected $children;
 
+    protected $error;
+
     public function __construct($option, $data)
     {
         foreach($data as $key => $val){
@@ -53,6 +55,10 @@ class Row{
     public function toArray(){
         $res = [];
         $error = [];
+        if($this->error){
+            $error['_row'] = $this->error;
+        }
+
         foreach($this->cells as $key => $cell){
             $res['data'][$key] = $cell->getValue();
             if($cell->getError() != ''){
@@ -61,11 +67,24 @@ class Row{
         }
 
         count($error) > 0 && $res['error'] = $error;
-        if($this->children){
+        if($this->children && !$this->children->isEmpty()){
             $res['children'] = $this->children->toArray();
         }
 
         return $res;
+    }
+
+    public function getRowData(){
+        $rowData = [];
+        foreach($this->cells as $key => $cell){
+            $rowData[$key] = $cell->getValue();
+        }
+
+        return $rowData;
+    }
+
+    public function setError($err_msg){
+        $this->error = $err_msg;
     }
 
 }

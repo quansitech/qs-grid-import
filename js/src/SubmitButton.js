@@ -105,6 +105,7 @@ class SubmitButton extends React.Component{
                 if(data.error == 1){
                     that.setState({ submitting: false});
                     that.props.showerr(data.error_msg);
+                    that.props.update(data.row_data);
                 }
                 else{
                     if(data.process >= 0){
