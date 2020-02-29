@@ -60,7 +60,6 @@ class CellNode extends React.Component{
             case 'INPUTNUMBER':
                 return <InputNumber { ...this.restProps } value={ this.props.text } onChange={ this.cellValueChange(this.index, this.colSetting.key) } />;
             case 'SELECT':
-                console.log(this.colSetting.options)
                 return (<Select { ...this.restProps } showSearch value={ this.props.text } onSelect={ this.cellValueChange(this.index, this.colSetting.key) }
                                 filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                 }>

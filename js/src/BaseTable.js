@@ -28,7 +28,6 @@ class BaseTable extends React.Component {
                 render: this.renderCell(col)
             }
         });
-
         this.dataSource = this.props.row_data.map((col, idx) => {
             const dataSource = col.data;
             dataSource.key = idx;

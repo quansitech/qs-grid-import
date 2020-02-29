@@ -13,6 +13,7 @@ class Input extends ColumnType{
 
     public function paraseValue($value)
     {
+        $value = $value === null ? '' : $value;
         return $value;
     }
 }
