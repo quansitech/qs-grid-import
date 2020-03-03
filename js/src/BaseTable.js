@@ -1,7 +1,6 @@
 import React from 'react';
 import {Table, Icon, Tooltip} from 'antd';
 import CellNode from './cellNode';
-import 'antd/dist/antd.css';
 
 class BaseTable extends React.Component {
 

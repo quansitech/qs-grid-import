@@ -66,8 +66,12 @@ class CellNode extends React.Component{
                 {this.colSetting.options != null && Object.keys(this.colSetting.options).map((col) => <Select.Option key={ col } value={ col }>{ this.colSetting.options[col] }</Select.Option>)}
                 </Select>);
             case 'DATE':
-                let value = this.props.text ? moment(this.props.text, 'YYYY/MM/DD') : '';
-                return <DatePicker onChange={ this.dateChange(this.index, this.colSetting.key) } value={ value } />
+                if(this.props.text){
+                    return <DatePicker onChange={ this.dateChange(this.index, this.colSetting.key) } value={ moment(this.props.text, 'YYYY/MM/DD') } />
+                }
+                else{
+                    return <DatePicker onChange={ this.dateChange(this.index, this.colSetting.key) } />
+                }
             default:
                 throw 'error cell type';
         }

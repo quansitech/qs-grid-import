@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, Progress } from 'antd';
-import 'antd/dist/antd.css';
 
 class SubmitButton extends React.Component{
     constructor(props){
