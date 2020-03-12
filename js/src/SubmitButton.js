@@ -28,7 +28,8 @@ class SubmitButton extends React.Component{
 
         fetch(this.props.submiturl, {
             body: JSON.stringify(this.props.data.row_data),
-            method: 'PUT'
+            method: 'PUT',
+            credentials: "include"
         }).then(function(res){
             that.setState({ submitting: false});
             if(res.ok){
@@ -57,7 +58,8 @@ class SubmitButton extends React.Component{
 
         fetch(this.props.submiturl, {
             body: JSON.stringify(this.props.data.row_data),
-            method: 'PUT'
+            method: 'PUT',
+            credentials: "include"
         }).then(function(res){
             if(res.ok){
                 return res.json();
@@ -90,7 +92,7 @@ class SubmitButton extends React.Component{
 
         const that = this;
 
-        fetch(this.props.asyncProcessNotify + '?trans_id=' + trans_id)
+        fetch(this.props.asyncProcessNotify + '?trans_id=' + trans_id, {credentials: "include"})
             .then(function(res){
                 if(res.ok){
                     return res.json();
