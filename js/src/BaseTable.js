@@ -1,5 +1,6 @@
 import React from 'react';
-import {Table, Icon, Tooltip} from 'antd';
+import {Table, Tooltip} from 'antd';
+import { WarningTwoTone } from '@ant-design/icons';
 import CellNode from './cellNode';
 
 class BaseTable extends React.Component {
@@ -53,14 +54,14 @@ class BaseTable extends React.Component {
                     <div>
                         { row_error_tips &&
                         <Tooltip title={this.props.row_data[index].error[this._row_error_key]}>
-                            <Icon style={{marginRight: 5}} type="warning" theme="twoTone" twoToneColor="#df0000"/>
+                            <WarningTwoTone style={{marginRight: 5}} twoToneColor="#df0000"/>
                         </Tooltip>
                         }
                         <CellNode text={text} index={index} colsetting={colSetting} topchange={this.commonChange}
                                   style={{width: '90%'}}/>
                         { cell_error_tips &&
                             <Tooltip title={this.props.row_data[index].error[colSetting.key]}>
-                                <Icon style={{marginLeft: 5}} type="warning" theme="twoTone" twoToneColor="#df0000"/>
+                                <WarningTwoTone style={{marginLeft: 5}} twoToneColor="#df0000"/>
                             </Tooltip>
                         }
                     </div>

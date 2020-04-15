@@ -1,6 +1,7 @@
 import React from 'react';
-import { Input, Select, InputNumber, DatePicker } from 'antd';
-import moment from 'moment';
+import { Input, Select, InputNumber } from 'antd';
+import DatePicker from './components/DatePicker';
+import format from 'dayjs';
 
 class CellNode extends React.Component{
 
@@ -67,7 +68,7 @@ class CellNode extends React.Component{
                 </Select>);
             case 'DATE':
                 if(this.props.text){
-                    return <DatePicker onChange={ this.dateChange(this.index, this.colSetting.key) } value={ moment(this.props.text, 'YYYY/MM/DD') } />
+                    return <DatePicker onChange={ this.dateChange(this.index, this.colSetting.key) } value={ format(this.props.text, 'YYYY/MM/DD') } />
                 }
                 else{
                     return <DatePicker onChange={ this.dateChange(this.index, this.colSetting.key) } />
