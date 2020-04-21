@@ -14,9 +14,9 @@ class GridImport{
     }
 
 
-    public function fill()
+    public function fill($source = 'php://input')
     {
-        $json = file_get_contents('php://input');
+        $json = file_get_contents($source);
         $row_data = json_decode(htmlspecialchars_decode($json), true);
 
         $this->first_grid = self::init($row_data);
