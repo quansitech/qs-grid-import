@@ -14,9 +14,14 @@ class GridImport{
     }
 
 
-    public function fill($source = 'php://input')
+    public function fill($fill_json = '')
     {
-        $json = file_get_contents($source);
+        if($fill_json){
+            $json = $fill_json;
+        }
+        else{
+            $json = file_get_contents("php://input");
+        }
         $row_data = json_decode(htmlspecialchars_decode($json), true);
 
         $this->first_grid = self::init($row_data);
