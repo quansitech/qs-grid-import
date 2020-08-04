@@ -30,8 +30,10 @@ class GridImport{
 
     protected function init($row_data, $level = 1) : Grid
     {
-        $grid = new Grid();
-        $column_options = Helper::getColumnOptionByLevel($this->option, $level);
+        $option = Helper::getColumnOptionByLevel($this->option, $level);
+        $grid = new Grid($option);
+        $column_options = $option['data'];
+
         foreach($row_data as $data){
             $row = new Row($column_options, $data['data']);
             $grid->addRow($row);

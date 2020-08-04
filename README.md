@@ -33,6 +33,12 @@ npm run build //编译js文件，编译出的文件在dist/grid-import-bundle.js
 ## 用法
 
 ### 定义表格配置
++ unique 唯一设置
+
+  设置哪些字段必须是唯一的，否则报错，可以是复合字段设置。
+  
+  设置类型数组，设置值为data 配置对应的key
+
 + data 配置值
 
     >1. title 标题
@@ -44,6 +50,7 @@ npm run build //编译js文件，编译出的文件在dist/grid-import-bundle.js
 + 代码示例
 ```php
 $options = [
+    'unique' => [ 'project_id' ], //如果是复合唯一，设置多个key值 ['project_id', 'name']
     'data' => [
         [
             'title' => '项目',
@@ -86,6 +93,10 @@ $options = [
      >```
 
 PS. 除INPUT类型外，其余类型都在提交时会对提交值分别进行类型有效性验证
+
+5. CellType::MULTI_SELECT  多选
+    > 设置方法同 CellType::SELECT
+    > 唯一的区别是excel是文本输入类型，以半角英文逗号分隔
 
 #### 是否必填
 

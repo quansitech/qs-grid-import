@@ -24,6 +24,6 @@ class Helper{
             $cur++;
         }while($cur < $level && isset($tmp_option['children']) && $tmp_option = $tmp_option['children']);
 
-        return $tmp_option['data'];
+        return $tmp_option;
     }
 }

@@ -1,3 +1,9 @@
 .ant-message{
     z-index:9999
 }
+html, body {
+    font-family: "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100%;
+    background: #f9f9f9;
+}

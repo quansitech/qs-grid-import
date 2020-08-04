@@ -40,6 +40,7 @@ class CellNode extends React.Component{
     cellValueChange(index, columnName){
 
         return (val) => {
+            console.log(val);
             this.topchange(val, index, columnName);
         }
     }
@@ -73,6 +74,15 @@ class CellNode extends React.Component{
                 else{
                     return <DatePicker onChange={ this.dateChange(this.index, this.colSetting.key) } />
                 }
+            case 'MULTISELECT':
+                if(this.props.text){
+                    this.restProps.defaultValue = this.props.text
+                }
+                return  (<Select mode="multiple" { ...this.restProps } showSearch onChange={ this.cellValueChange(this.index, this.colSetting.key) }
+                                filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                }>
+                    {this.colSetting.options != null && Object.keys(this.colSetting.options).map((col) => <Select.Option key={ col } value={ col }>{ this.colSetting.options[col] }</Select.Option>)}
+                </Select>);
             default:
                 throw 'error cell type';
         }

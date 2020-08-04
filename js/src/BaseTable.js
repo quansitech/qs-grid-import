@@ -58,7 +58,7 @@ class BaseTable extends React.Component {
                         </Tooltip>
                         }
                         <CellNode text={text} index={index} colsetting={colSetting} topchange={this.commonChange}
-                                  style={{width: '90%'}}/>
+                                  style={{width: '78%'}}/>
                         { cell_error_tips &&
                             <Tooltip title={this.props.row_data[index].error[colSetting.key]}>
                                 <WarningTwoTone style={{marginLeft: 5}} twoToneColor="#df0000"/>
