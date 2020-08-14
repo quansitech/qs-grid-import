@@ -10,7 +10,10 @@ class MultiSelect extends Select{
     }
 
     public function convertTo(){
-        return [];
+        return [
+            'type' => ListBuilder::MULTI_LIST_TYPE,
+            'data_source' => implode(',', $this->select_options)
+        ];
     }
 
     public function paraseValue($value)
