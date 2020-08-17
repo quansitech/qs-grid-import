@@ -40,7 +40,6 @@ class CellNode extends React.Component{
     cellValueChange(index, columnName){
 
         return (val) => {
-            console.log(val);
             this.topchange(val, index, columnName);
         }
     }
