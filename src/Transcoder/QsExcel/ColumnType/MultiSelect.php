@@ -24,6 +24,6 @@ class MultiSelect extends Select{
                 return (string)(array_flip($this->select_options)[$item]);
             }
         }, $arr);
-        return array_filter($res);
+        return array_values(array_filter($res));
     }
 }
