@@ -32,6 +32,11 @@ class BaseTable extends React.Component {
             this.currentIndex = 1;
         }
         location = `#anchor_${this.currentIndex++}`
+
+        //向下滚动一段举例，避免被屏幕顶部的元素遮住
+        setTimeout(() => {
+            window.scrollTo(0, window.scrollY-200)
+        })
     }
 
     updateBaseProp() {
