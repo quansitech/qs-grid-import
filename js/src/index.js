@@ -15,6 +15,9 @@ class ImportGrid extends React.Component{
         this.updateState = this.updateState.bind(this);
         this.importSuccess = this.importSuccess.bind(this);
         this.redirect = this.redirect.bind(this);
+        this.focusErr = this.focusErr.bind(this);
+
+        this.tableRef = React.createRef();
     }
 
     componentDidMount() {
@@ -31,6 +34,10 @@ class ImportGrid extends React.Component{
         // });
 
         this.setState({ data: this.props.data })
+    }
+
+    focusErr() {
+        this.tableRef.current.focusErr();
     }
 
     updateState(data){
@@ -74,7 +81,8 @@ class ImportGrid extends React.Component{
         if(this.state.data) {
             return (<div>
                     <SubmitButton async={ this.props.async } asyncProcessNotify={ this.props.asyncProcessNotify } data={ this.state.data } submiturl={ this.props.submitUrl } success={ this.importSuccess } update={ this.updateState } showerr={ this.error } style={{ marginBottom: "5px" }} />
-                    <BaseTable columns={ this.state.data.columns } row_data={ this.state.data.row_data} updatestate={ this.updateState }/>
+                    <p>提示：ctrl+q可快速定位错误</p>
+                    <BaseTable ref={this.tableRef} columns={ this.state.data.columns } row_data={ this.state.data.row_data} updatestate={ this.updateState }/>
                 </div>)
         }
         else {
@@ -88,7 +96,16 @@ class ImportGrid extends React.Component{
 function importGrid(id, opt){
     const defaultOpt = { submitUrl: '', async: false, asyncProcessNotify: '', successRedirectUrl: '', data: null};
     Object.assign(defaultOpt, opt);
-    ReactDOM.render(<ImportGrid submitUrl={ defaultOpt.submitUrl } redirect={ defaultOpt.successRedirectUrl } data={ defaultOpt.data} async={ defaultOpt.async } asyncProcessNotify={ defaultOpt.asyncProcessNotify } />, document.getElementById(id));
+
+    const gridRef = React.createRef();
+
+    document.addEventListener('keydown', (e) => {
+        if(e.ctrlKey && e.key=='q'){
+            gridRef.current.focusErr();
+        }
+    });
+
+    ReactDOM.render(<ImportGrid ref={gridRef} submitUrl={ defaultOpt.submitUrl } redirect={ defaultOpt.successRedirectUrl } data={ defaultOpt.data} async={ defaultOpt.async } asyncProcessNotify={ defaultOpt.asyncProcessNotify } />, document.getElementById(id));
 }
   
 window.importGrid = importGrid;
