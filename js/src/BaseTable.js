@@ -45,6 +45,7 @@ class BaseTable extends React.Component {
                 title: col.title,
                 dataIndex: col.key,
                 key: col.key,
+                width: col.width,
                 render: this.renderCell(col)
             }
         });

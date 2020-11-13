@@ -46,6 +46,7 @@ npm run build //编译js文件，编译出的文件在dist/grid-import-bundle.js
     >3. [type 列类型](#列类型)
     >4. [required 是否必填](#是否必填)
     >5. [validate_callback 验证回调](#验证回调)
+    >6. width 列宽度百分比
  
 + 代码示例
 ```php
@@ -58,6 +59,7 @@ $options = [
             'type' => CellType::SELECT,
             'options' => [ 1 => '项目1', 2 => '项目2'],
             'required' => true,
+            'width' => '20%',
             'validate_callback' => function($val){
                 //验证逻辑
             }
