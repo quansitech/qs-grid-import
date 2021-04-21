@@ -55,11 +55,23 @@ class Cell{
             $required = $this->required;
         }
 
-        if($required === true && trim($this->value) == ''){
+        if($required === true && $this->isEmpty()){
             $this->setError("必填");
             return false;
         }
         return true;
+    }
+
+    protected function isEmpty(){
+        if(is_string($this->value) && trim($this->value) === ''){
+            return true;
+        }
+
+        if(is_array($this->value) && count($this->value) === 0){
+            return true;
+        }
+
+        return false;
     }
 
     protected function checkTypeValidate(){
