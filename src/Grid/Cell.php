@@ -71,6 +71,10 @@ class Cell{
             return true;
         }
 
+        if(is_null($this->value)){
+            return true;
+        }
+
         return false;
     }
 
