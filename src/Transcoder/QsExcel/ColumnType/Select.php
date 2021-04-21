@@ -6,9 +6,12 @@ use QsExcel\Builder\ListBuilder;
 class Select extends ColumnType{
 
     protected $select_options;
+    protected $col_option;
 
     public function __construct($col_option)
     {
+        $this->col_option = $col_option;
+
         $this->select_options = self::paraseOption($col_option['options']);
     }
 

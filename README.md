@@ -47,6 +47,7 @@ npm run build //编译js文件，编译出的文件在dist/grid-import-bundle.js
     >4. [required 是否必填](#是否必填)
     >5. [validate_callback 验证回调](#验证回调)
     >6. width 列宽度百分比
+    >7. validate_err_msg  自定义类型验证错误提示
  
 + 代码示例
 ```php
@@ -65,7 +66,11 @@ $options = [
             }
         ],
         [
-            //省略第二列的配置
+             'title' => '立项日期',
+             'key' => 'create_date',
+             'type' => CellType::DATE,
+             'required' => true,
+             'validate_err_msg' => '立项格式不正确，参考: 2020-01-01' //通过该设置重置日期类型的错误提示
         ]       
     ]
 ];
@@ -77,7 +82,7 @@ $options = [
 
 1. CellType::INPUT  单行输入框
 
-2. CellType::Date  日期
+2. CellType::DATE  日期
 
 3. CellType::INPUTNUMBER 数字
 
@@ -99,6 +104,11 @@ PS. 除INPUT类型外，其余类型都在提交时会对提交值分别进行�
 5. CellType::MULTI_SELECT  多选
     > 设置方法同 CellType::SELECT
     > 唯一的区别是excel是文本输入类型，以半角英文逗号分隔
+    > 
+    > 独有设置 ignore
+    > ```php
+    >  'ignore' => false // 设置为false后，保留不在options里的值，默认为ture
+    > ``` 
 
 #### 是否必填
 

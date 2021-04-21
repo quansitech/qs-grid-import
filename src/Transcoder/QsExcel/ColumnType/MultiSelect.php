@@ -23,6 +23,10 @@ class MultiSelect extends Select{
             if(isset(array_flip($this->select_options)[$item])){
                 return (string)(array_flip($this->select_options)[$item]);
             }
+
+            if($this->col_option['ignore'] === false){
+                return $item;
+            }
         }, $arr);
         return array_values(array_filter($res));
     }

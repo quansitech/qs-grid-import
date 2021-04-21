@@ -13,6 +13,7 @@ class Cell{
     protected $validate_callback;
     protected $value;
     protected $error = '';
+    protected $validate_err_msg = '格式不正确';
     protected $row = null;
 
     public function __construct($option, $value, $row)
@@ -22,6 +23,7 @@ class Cell{
         isset($option['required']) && $this->required = $option['required'];
         $this->validate_callback = $option['validate_callback'];
         $this->cell_type = CellType::instance($option['type'], $option);
+        isset($option['validate_err_msg']) && $this->validate_err_msg = $option['validate_err_msg'];
 
         $this->setValue($value);
         $this->row = $row;
@@ -63,7 +65,7 @@ class Cell{
     protected function checkTypeValidate(){
         $r = $this->cell_type->validate($this->value);
         if($r === false){
-            $this->setError("格式不正确");
+            $this->setError($this->validate_err_msg);
         }
         return $r;
     }
