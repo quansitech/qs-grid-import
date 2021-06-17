@@ -53,7 +53,6 @@ class CellNode extends React.Component{
     }
 
     render(){
-        
 
         switch(this.colSetting.type.toUpperCase()){
             case 'INPUT':
@@ -72,6 +71,15 @@ class CellNode extends React.Component{
                 }
                 else{
                     return <DatePicker onChange={ this.dateChange(this.index, this.colSetting.key) } />
+                }
+            case 'DATETIME':
+                if(this.props.text){
+                    console.log(this.props.text);
+                    console.log(format(this.props.text, 'YYYY/MM/DD HH:mm:ss'));
+                    return <DatePicker onChange={ this.dateChange(this.index, this.colSetting.key) } value={ format(this.props.text, 'YYYY/MM/DD HH:mm:ss') } showTime />
+                }
+                else{
+                    return <DatePicker onChange={ this.dateChange(this.index, this.colSetting.key) } showTime />
                 }
             case 'MULTISELECT':
                 if(this.props.text){

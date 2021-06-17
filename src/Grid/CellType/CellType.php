@@ -5,6 +5,7 @@ abstract class CellType{
 
     const INPUT = 'input';
     const DATE = 'date';
+    const DATETIME = 'dateTime';
     const INPUT_NUMBER = 'inputNumber';
     const SELECT = 'select';
     const MULTI_SELECT = 'multiSelect';

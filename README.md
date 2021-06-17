@@ -82,7 +82,7 @@ $options = [
 
 1. CellType::INPUT  单行输入框
 
-2. CellType::DATE  日期
+2. CellType::DATE  日期 （格式: 2021-06-17）
 
 3. CellType::INPUTNUMBER 数字
 
@@ -109,6 +109,8 @@ PS. 除INPUT类型外，其余类型都在提交时会对提交值分别进行�
     > ```php
     >  'ignore' => false // 设置为false后，保留不在options里的值，默认为ture
     > ``` 
+
+6. CellType::DATETIME 日期+时间（格式: 2021-06-17 12:30:30）
 
 #### 是否必填
 
