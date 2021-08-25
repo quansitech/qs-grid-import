@@ -4,7 +4,7 @@ namespace QsGridImport\Transcoder\QsExcel\ColumnType;
 class InputNumber extends ColumnType{
 
     public function validate($val){
-        return is_int($val);
+        return is_numeric($val);
     }
 
     public function convertTo(){
