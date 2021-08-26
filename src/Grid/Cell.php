@@ -15,6 +15,7 @@ class Cell{
     protected $error = '';
     protected $validate_err_msg = '格式不正确';
     protected $row = null;
+    protected $required_err_msg = '必填';
 
     public function __construct($option, $value, $row)
     {
@@ -24,6 +25,7 @@ class Cell{
         $this->validate_callback = $option['validate_callback'];
         $this->cell_type = CellType::instance($option['type'], $option);
         isset($option['validate_err_msg']) && $this->validate_err_msg = $option['validate_err_msg'];
+        isset($option['required_err_msg']) && $this->required_err_msg = $option['required_err_msg'];
 
         $this->setValue($value);
         $this->row = $row;
@@ -49,14 +51,18 @@ class Cell{
         $required = false;
 
         if($this->required instanceof \Closure){
-            $required = call_user_func($this->required);
+            $row_datas = array_map(function(Cell $cell){
+                return $cell->getValue();
+            }, $this->row->getCells());
+
+            $required = call_user_func($this->required, $this->value, $row_datas);
         }
         else{
             $required = $this->required;
         }
 
         if($required === true && $this->isEmpty()){
-            $this->setError("必填");
+            $this->setError($this->required_err_msg);
             return false;
         }
         return true;
