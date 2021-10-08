@@ -5,7 +5,7 @@ class Helper{
 
     static public function excelTime($days,$data_format='Y-m-d H:i:s'){
         if($days != ''){
-            $n = intval(($days - 25569) * 3600 * 24); //转换成1970年以来的秒数
+            $n = round(($days - 25569) * 3600 * 24); //转换成1970年以来的秒数
             return gmdate( $data_format, $n);//格式化时间
         }
     }
