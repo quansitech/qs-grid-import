@@ -18,7 +18,7 @@ class MultiSelect extends Select{
 
     public function paraseValue($value)
     {
-        $arr = $value == '' ? null : explode(',', $value);
+        $arr = $value == '' ? [] : explode(',', $value);
         $res = array_map(function($item){
             if(isset(array_flip($this->select_options)[$item])){
                 return (string)(array_flip($this->select_options)[$item]);
