@@ -40,6 +40,11 @@ class Cell{
     }
 
     public function validate(){
+        //非必填，且为空，就不需要验证了
+        if($this->required === false && $this->isEmpty()){
+            return true;
+        }
+
         $flag = self::checkRequired();
         $flag !== false && $flag = self::checkTypeValidate();
         $flag !== false && $flag = self::checkValidateCallback();

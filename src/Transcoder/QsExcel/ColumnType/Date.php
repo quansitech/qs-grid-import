@@ -8,7 +8,12 @@ class Date extends ColumnType{
 
     public function validate($val){
         $date = self::formatDate($val);
-        return $date != date('n/j/Y', strtotime($date)) ? false : true;
+        if(is_numeric($val)){
+            return $date != date('n/j/Y', strtotime($date)) ? false : true;
+        }
+        else{
+            return !!strtotime($date);
+        }
     }
 
     public function convertTo(){
