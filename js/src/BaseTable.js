@@ -12,7 +12,6 @@ class BaseTable extends React.Component {
 
         this.final = this.props.columns.children ? false : true;
 
-        this.tabindex = 0;
         this.currentIndex = 1;
 
         this.renderCell = this.renderCell.bind(this);
@@ -24,11 +23,11 @@ class BaseTable extends React.Component {
     }
 
     focusErr = () => {
-        if(this.tabindex == 0){
+        if(this.max_tabindex == 0){
             return;
         }
 
-        if(this.currentIndex > this.tabindex){
+        if(this.currentIndex > this.max_tabindex){
             this.currentIndex = 1;
         }
         location = `#anchor_${this.currentIndex++}`
@@ -54,9 +53,24 @@ class BaseTable extends React.Component {
             dataSource.key = idx;
             return dataSource;
         });
+
+        let tabindex = 0;
+        this.row_data = this.props.row_data.map(col => {
+            if(col.error){
+                col.error_tabindex = {};
+                for(const [key, value] of Object.entries(col.error)){
+                    col.error_tabindex[key] = ++tabindex;
+                }
+            }
+            return col;
+        })
+
+        this.max_tabindex = tabindex;
+
     }
 
     renderCell(colSetting) {
+
         return (text, record, index) => {
             let row_error_tips;
             let cell_error_tips;
@@ -69,13 +83,12 @@ class BaseTable extends React.Component {
             if (typeof this.props.row_data[index].error != "undefined" && typeof this.props.row_data[index].error[colSetting.key] != "undefined") {
                 cell_error_tips = true;
             }
-
                 return (
                     <div>
                         { row_error_tips &&
                         //<WarningIcon ref={rowErrRef} tips={this.props.row_data[index].error[this._row_error_key]}></WarningIcon>
                         <Tooltip title={this.props.row_data[index].error[this._row_error_key]}>
-                            <a name={ `anchor_${++this.tabindex}` }>
+                            <a name={ `anchor_${this.row_data[index].error_tabindex[this._row_error_key]}` }>
                                 <WarningTwoTone  style={{marginRight: 5}} twoToneColor="#df0000"/>
                             </a>
                         </Tooltip>
@@ -85,7 +98,7 @@ class BaseTable extends React.Component {
                         { cell_error_tips &&
                         //<WarningIcon ref={cellErrRef} tips={this.props.row_data[index].error[colSetting.key]}></WarningIcon>
                             <Tooltip title={this.props.row_data[index].error[colSetting.key]}>
-                                <a name={ `anchor_${++this.tabindex}` }>
+                                <a name={ `anchor_${this.row_data[index].error_tabindex[colSetting.key]}` }>
                                     <WarningTwoTone  style={{marginLeft: 5}} twoToneColor="#df0000"/>
                                 </a>
                             </Tooltip>

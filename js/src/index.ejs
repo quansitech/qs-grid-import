@@ -10,12 +10,25 @@
 
         <script>
                 var opt = {
-                            async: false,
-                            asyncProcessNotify: "http://move.test/Admin/BoxTplBookImport/getImportProcess.html", //进度请求地址
-                            submitUrl: "http://move.test/Admin/Caption/insert.html", //设置数据提交到的后端地址
-                            successRedirectUrl: "http://move.test/Admin/BoxTpl/index.html", //这里设置导入成功后，点击确定按钮要跳转到的地址
-                            data: {"columns":{"data":[{"title":"\u4e66\u7bb1\u7f16\u53f7","key":"trade_no","type":"input","required":true,"validate_callback":{}},{"title":"\u51a0\u540d\u540d\u79f0","width": "50%", "key":"caption","type":"input","required":true,"validate_callback":{}},{"title":"测试日期", "key":"create_date","type":"dateTime","required":true,"validate_callback":{}},{"title":"\u6350\u8d60\u65b9\u540d\u79f0","key":"company_name","type":"input","required":false,"validate_callback":{}}]},"row_data":[{"data":{"trade_no":"00002579","caption":"A1","create_date":"2021-06-17 12:00:00","company_name":"\u4f18\u6021\u9038\u9152\u5e97"}}]} //将上面生成的grid_data转成json格式赋给data
-                        }
+                    async: false,
+                    asyncProcessNotify: "http://move.test/Admin/BoxTplBookImport/getImportProcess.html", //进度请求地址
+                    submitUrl: "http://localhost:3001/move/home/index/demo.html", //设置数据提交到的后端地址
+                    successRedirectUrl: "http://move.test/Admin/BoxTpl/index.html", //这里设置导入成功后，点击确定按钮要跳转到的地址
+                    data: {
+                        "columns":{
+                            "data":[
+                                {"title":"\u4e66\u7bb1\u7f16\u53f7","key":"trade_no","type":"input","required":true,"validate_callback":{}},
+                                {"title":"\u51a0\u540d\u540d\u79f0","width": "50%", "key":"caption","type":"input","required":true,"validate_callback":{}},
+                                {"title":"测试日期", "key":"create_date","type":"dateTime","required":true,"validate_callback":{}},
+                                {"title":"\u6350\u8d60\u65b9\u540d\u79f0","key":"company_name","type":"input","required":false,"validate_callback":{}}
+                            ]
+                        },
+                        "row_data":[
+                            {"data":{"trade_no":"00002579","caption":"A1","create_date":"2021-06-17 12:00:00","company_name":"\u4f18\u6021\u9038\u9152\u5e97"}},
+                            {"data":{"trade_no":"00002580","caption":"A1","create_date":"2021-06-17 12:00:00","company_name":"\u4f18\u6021\u9038\u9152\u5e97"}}
+                        ]
+                    } //将上面生成的grid_data转成json格式赋给data
+                }
                 importGrid('root', opt); //第一个参数是需要渲染的dom id， 第二个参数为上面的配置对象
         </script>
     </body>
