@@ -8,6 +8,7 @@
 + 理论上支持无限嵌套子母表
 + 自动完成excel到grid格式的转换，开发者仅需关心业务逻辑接口
 + [qs-excel](https://github.com/tiderjian/qs-excel)完成excel的操作, gridImport仅关心web表格生成和完成两个组件间不同的数据格式转换
++ 支持导出excel错误信息，可批量更正后重新导入
 
 ## 安装
 ```php
@@ -369,4 +370,24 @@ else{
     //返回一个200响应即可，grid组件会显示导入成功提示
     //如果是异步导入，返回process:100
 }
+```
+
+### 导出excel错误信息
+前端组件配置
+```javascript
+<script type="text/javascript" src="__PUBLIC__/libs-extra/grid-import-bundle.js"></script>
+<script>
+var opt = {
+    exportErrObj: {
+        filename:"xxx错误信息.xlsx",// 导出文件名，默认为 错误信息.xlsx
+        output: true, // 是否支持导出excel错误信息
+    },
+    async: false,
+    asyncProcessNotify: "", //进度请求地址
+    submitUrl: "", //设置数据提交到的后端地址
+    successRedirectUrl: "", //这里设置导入成功后，点击确定按钮要跳转到的地址
+    data: {:json_encode($grid_data)} //将上面生成的grid_data转成json格式赋给data
+};
+importGrid('id', opt); //第一个参数是需要渲染的dom id， 第二个参数为上面的配置对象
+</script>
 ```

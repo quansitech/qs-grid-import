@@ -27,6 +27,7 @@ class CellNode extends React.Component{
         this.cellChange = this.cellChange.bind(this);
         this.cellValueChange = this.cellValueChange.bind(this);
         this.dateChange = this.dateChange.bind(this);
+        this.getSourceVal = this.getSourceVal.bind(this);
     }
 
     cellChange(index, columnName){
@@ -50,6 +51,29 @@ class CellNode extends React.Component{
             this.topchange(dateString, index, columnName);
         }
         
+    }
+
+    getSourceVal(val,colSetting){
+        switch (colSetting.type.toUpperCase()){
+            case 'INPUT':
+            case 'INPUTNUMBER':
+                return val;
+            case 'SELECT':
+                return colSetting.options?.[val];
+            case 'DATE':
+                return val;
+            case 'DATETIME':
+                return val;
+            case 'MULTISELECT':
+                let textArr = [];
+                for (const [key, value] of Object.entries(colSetting.options)) {
+                    if(val.includes(key)) textArr.push(value)
+                }
+
+                return textArr.join(",");
+            default:
+                throw 'error cell type';
+        }
     }
 
     render(){

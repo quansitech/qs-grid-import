@@ -25,6 +25,8 @@
   "dependencies": {
     "antd": "^4.1.3",
     "dayjs": "^1.8.24",
+    "exceljs": "^4.4.0",
+    "file-saver": "^2.0.5",
     "react": "^16.11.0",
     "react-dom": "^16.11.0"
   }
