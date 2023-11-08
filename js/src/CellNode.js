@@ -98,8 +98,6 @@ class CellNode extends React.Component{
                 }
             case 'DATETIME':
                 if(this.props.text){
-                    console.log(this.props.text);
-                    console.log(format(this.props.text, 'YYYY/MM/DD HH:mm:ss'));
                     return <DatePicker onChange={ this.dateChange(this.index, this.colSetting.key) } value={ format(this.props.text, 'YYYY/MM/DD HH:mm:ss') } showTime />
                 }
                 else{
