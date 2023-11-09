@@ -1,7 +1,7 @@
 import React from 'react';
 import {Table, Tooltip} from 'antd';
 import { WarningTwoTone } from '@ant-design/icons';
-import CellNode from './cellNode';
+import CellNode from './CellNode';
 
 class BaseTable extends React.Component {
 
@@ -20,6 +20,24 @@ class BaseTable extends React.Component {
         this.commonChange = this.commonChange.bind(this);
         this.updateBaseProp = this.updateBaseProp.bind(this);
         this.focusErr = this.focusErr.bind(this);
+        this.getCellSourceVal = this.getCellSourceVal.bind(this);
+        this.getRowErr = this.getRowErr.bind(this);
+        this.getCellErr = this.getCellErr.bind(this);
+
+        this.cellNodeRef = React.createRef();
+
+    }
+
+    getCellSourceVal(val,colSetting){
+        return this.cellNodeRef.current.getSourceVal(val,colSetting)
+    }
+
+    getRowErr(rowData){
+        return rowData?.error?.[this._row_error_key];
+    }
+
+    getCellErr(key, rowData){
+        return rowData?.error?.[key];
     }
 
     focusErr = () => {
@@ -76,28 +94,28 @@ class BaseTable extends React.Component {
             let cell_error_tips;
             if (colSetting.key == this.props.columns.data[0].key
                 && typeof this.props.row_data[index].error != "undefined"
-                && typeof this.props.row_data[index].error[this._row_error_key] != "undefined") {
+                && typeof this.getRowErr(this.props.row_data[index]) != "undefined") {
                 row_error_tips = true;
             }
 
-            if (typeof this.props.row_data[index].error != "undefined" && typeof this.props.row_data[index].error[colSetting.key] != "undefined") {
+            if (typeof this.props.row_data[index].error != "undefined" && typeof this.getCellErr(colSetting.key,this.props.row_data[index]) != "undefined") {
                 cell_error_tips = true;
             }
                 return (
                     <div>
                         { row_error_tips &&
                         //<WarningIcon ref={rowErrRef} tips={this.props.row_data[index].error[this._row_error_key]}></WarningIcon>
-                        <Tooltip title={this.props.row_data[index].error[this._row_error_key]}>
+                        <Tooltip title={this.getRowErr(this.props.row_data[index])}>
                             <a name={ `anchor_${this.row_data[index].error_tabindex[this._row_error_key]}` }>
                                 <WarningTwoTone  style={{marginRight: 5}} twoToneColor="#df0000"/>
                             </a>
                         </Tooltip>
                         }
                         <CellNode text={text} index={index} colsetting={colSetting} topchange={this.commonChange}
-                                  style={{width: '78%'}}/>
+                                  style={{width: '78%'}} ref={this.cellNodeRef}/>
                         { cell_error_tips &&
                         //<WarningIcon ref={cellErrRef} tips={this.props.row_data[index].error[colSetting.key]}></WarningIcon>
-                            <Tooltip title={this.props.row_data[index].error[colSetting.key]}>
+                            <Tooltip title={this.getCellErr(colSetting.key,this.props.row_data[index])}>
                                 <a name={ `anchor_${this.row_data[index].error_tabindex[colSetting.key]}` }>
                                     <WarningTwoTone  style={{marginLeft: 5}} twoToneColor="#df0000"/>
                                 </a>
